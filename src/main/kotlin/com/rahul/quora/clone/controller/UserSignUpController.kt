@@ -23,14 +23,9 @@ class UserSignUpController {
             registerUserService.registerUser(user)
             true
         } catch (e: Exception) {
+            print(e)
             false
         }
     }
-
-    @GetMapping("/profile")
-    fun getUserProfile(): String {
-        return "Profile"
-    }
-
 }
 
