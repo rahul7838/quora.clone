@@ -6,7 +6,7 @@
 1. Use microservice architecture
 2. Deploy to cloud 
 3. Write swagger documentation
-4. 
+4. Write unit test and integration test cases
 
 
 # Design Details
