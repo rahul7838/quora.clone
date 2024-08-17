@@ -11,7 +11,6 @@ class RegisterUserService {
     @Autowired
     private lateinit var userRepository: UserRepository
 
-    fun registerUser(user: User) {
-        userRepository.save(user)
-    }
+    fun registerUser(user: User) = userRepository.save(user)
+
 }

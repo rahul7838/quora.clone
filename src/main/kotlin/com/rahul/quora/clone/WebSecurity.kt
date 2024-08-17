@@ -7,21 +7,21 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler
 
-@Configuration
-@EnableWebSecurity
-class WebSecurity : DefaultWebSecurityExpressionHandler() {
-
-    @Bean
-    open fun securityFilterChain(httpSecurity: HttpSecurity): SecurityFilterChain {
-        return httpSecurity
-            .authorizeHttpRequests {
-                it
-                    .anyRequest()
-                    .permitAll()
-
-            }
-            .csrf().disable()
-            .build()
-    }
-
-}
+//@Configuration
+//@EnableWebSecurity
+//class WebSecurity : DefaultWebSecurityExpressionHandler() {
+//
+//    @Bean
+//    open fun securityFilterChain(httpSecurity: HttpSecurity): SecurityFilterChain {
+//        return httpSecurity
+//            .authorizeHttpRequests {
+//                it
+//                    .anyRequest()
+//                    .permitAll()
+//
+//            }
+//            .csrf().disable()
+//            .build()
+//    }
+//
+//}
