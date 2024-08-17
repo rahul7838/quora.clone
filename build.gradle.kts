@@ -26,6 +26,11 @@ dependencies {
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+	// https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
+	implementation("jakarta.persistence:jakarta.persistence-api:3.2.0")
+
+
 	runtimeOnly("com.mysql:mysql-connector-j")
 	runtimeOnly("io.asyncer:r2dbc-mysql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
