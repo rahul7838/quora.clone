@@ -29,7 +29,6 @@ dependencies {
 
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//    implementation("junit:junit:4.13.1")
 
     runtimeOnly("com.mysql:mysql-connector-j")
 //	runtimeOnly("io.asyncer:r2dbc-mysql")
