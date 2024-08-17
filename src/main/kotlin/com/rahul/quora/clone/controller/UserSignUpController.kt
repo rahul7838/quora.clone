@@ -3,22 +3,20 @@ package com.rahul.quora.clone.controller
 import com.rahul.quora.clone.data.User
 import com.rahul.quora.clone.service.RegisterUserService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 
-@RestController()
+@RestController
+//@RestMapping
 class UserSignUpController {
 
     @Autowired
     lateinit var registerUserService: RegisterUserService
 
-    @PostMapping("/signup", consumes = ["application/json"])
+    @PostMapping("/signup", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun createNewUser(@RequestBody user: User): ResponseEntity<User> {
         println("create user api called")
         val userInstance = registerUserService.registerUser(user)
