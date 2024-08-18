@@ -3,7 +3,6 @@ package com.rahul.quora.clone.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.rahul.quora.clone.data.User
 import com.rahul.quora.clone.service.RegisterUserService
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,12 +25,6 @@ class UserSignUpControllerTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
-
-    @BeforeEach
-    fun setup() {
-
-    }
-
     @Test
     fun createUserTest() {
         val user = User(
@@ -41,7 +34,7 @@ class UserSignUpControllerTest {
             email = "rahul@singhal.io"
         )
         val expected = user.copy(id = 1)
-        val objectMapper = ObjectMapper().writer().withDefaultPrettyPrinter()
+        val objectMapper = ObjectMapper().writer()
         val expectedJsonObject = objectMapper.writeValueAsString(expected)
         `when`(registerUserService.registerUser(user)).thenReturn(expected)
         mockMvc.perform(

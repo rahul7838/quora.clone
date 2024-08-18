@@ -18,4 +18,7 @@ Apis
 4. Login with Google
 5. Forgot password
 
+#TODO
+1. Why UserSignUpController test do not terminate
+2. 
 
