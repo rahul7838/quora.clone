@@ -1,0 +1,1 @@
+ Alter table registered_user add password varchar(255);

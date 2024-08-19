@@ -1,5 +1,6 @@
 package com.rahul.quora.clone
 
+import org.flywaydb.core.Flyway
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
@@ -14,6 +15,6 @@ class Application
 
 fun main(args: Array<String>) {
 	val context = runApplication<Application>(*args)
-//	val registerUserService = context.getBean(RegisterUserService::class.java)
-//	registerUserService.registerUser(User("rahul", "singhal", 7987272882, "rahulsinghal0308@gmail.com"))
+	val flyway = context.getBean(Flyway::class.java)
+	flyway.migrate()
 }
