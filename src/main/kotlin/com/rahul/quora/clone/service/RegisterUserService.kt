@@ -1,5 +1,6 @@
 package com.rahul.quora.clone.service
 
+import com.rahul.quora.clone.data.Login
 import com.rahul.quora.clone.data.User
 import com.rahul.quora.clone.repository.UserRepository
 import org.springframework.stereotype.Service
@@ -11,5 +12,9 @@ class RegisterUserService(val userRepository: UserRepository) {
 //    private lateinit var userRepository: UserRepository
 
     fun registerUser(user: User) = userRepository.save(user)
+
+    fun isUserPresent(login: Login): Boolean {
+        return userRepository.findByEmailAndPassword(login.email, login.password)?.run { true } ?: false
+    }
 
 }
