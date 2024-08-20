@@ -23,11 +23,14 @@ Apis
 
 #TODO
 1. Why UserSignUpController test do not terminate
-2. Define Login API
-3. Write proper exception handling
+2. ~~Define Login API~~
+3. ~~Write proper exception handling~~
    (https://medium.com/insights-from-thoughtclan/the-best-way-to-structure-api-responses-in-spring-boot-ff9005fb8ff0)
-4. Define standard response format for all apis
-5. Define proper logging
+4. ~~Define standard response format for all apis~~
+5. Define proper logging 
+6. Sign up with Google 
+7. Avoid men in the middle attack, secure apis communication
+8. 
 
 
 #Database
@@ -44,4 +47,4 @@ Apis
 4. Elastic search
 5. Design pattern
 6. Understanding of synchronous/asynchronous processing, statelessness, and containerized auto-scaling applications.
-
+7. How will you determine api failure. Such as internal-server-error

@@ -1,7 +1,8 @@
 package com.rahul.quora.clone.controller
 
 import com.rahul.quora.clone.data.Login
-import com.rahul.quora.clone.data.User
+import com.rahul.quora.clone.dto.ApiResponse
+import com.rahul.quora.clone.dto.UserDTO
 import com.rahul.quora.clone.service.RegisterUserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
@@ -12,17 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-//@RestMapping
+//@RequestMapping("/user")
 class UserSignUpController {
 
     @Autowired
     lateinit var registerUserService: RegisterUserService
 
-    @PostMapping("/signup", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun createNewUser(@RequestBody user: User): ResponseEntity<User> {
+    @PostMapping(
+        "/signup",
+        consumes = [MediaType.APPLICATION_JSON_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    fun createNewUser(@RequestBody user: UserDTO): ApiResponse {
         println("create user api called")
-        val userInstance = registerUserService.registerUser(user)
-        return ResponseEntity.ok().body(userInstance)
+        return registerUserService.registerUser(user)
     }
 
     @GetMapping("/login")

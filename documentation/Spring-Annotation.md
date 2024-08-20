@@ -10,4 +10,8 @@
 3. @Autowired, @Bean, @Configuration, @Component, @Service, @Repository, @RestController, @RestControllerAdvice, @SpringBootApplication
    @ConditionalOnMissingBean
 
-5. 
+
+4. @ExceptionHandler, @InitBinder, and @ModelAttribute methods apply within the @Controller class (or class hierarchy) in which they are declared.
+   
+   If you want such methods to apply more globally (across controllers), you can declare them in a class annotated with @ControllerAdvice or @RestControllerAdvice.
+
