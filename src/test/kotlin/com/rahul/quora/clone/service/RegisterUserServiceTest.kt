@@ -1,10 +1,10 @@
 package com.rahul.quora.clone.service
 
 import com.rahul.quora.clone.data.User
+import com.rahul.quora.clone.dto.UserDTO
 import com.rahul.quora.clone.repository.UserRepository
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
+import org.mockito.Mockito.*
 import kotlin.test.assertEquals
 
 class RegisterUserServiceTest {
@@ -15,15 +15,19 @@ class RegisterUserServiceTest {
 
     @Test
     fun registerUserTest() {
-        val user = User(
-            name = "rahul",
-            surname = "singhal",
-            mobile = 7987272882,
-            email = "rahul@singhal.io"
-        )
-        val expected = user.copy(id = 1)
+        val userDTO  = UserDTO("rahul", "singhal", "rahul@singhal.io", 7987272882, "password")
+        val user = with(userDTO) {
+            User(
+                name = name,
+                surname = surname,
+                email = email,
+                mobile = mobile,
+                password = password
+            )
+        }
+        val expected: User = user.copy(id = 1)
         `when`(userRepository.save(user)).thenReturn(expected)
-        val actual = registerUserService.registerUser(user)
-        assertEquals(actual, expected)
+        val actual = registerUserService.registerUser(userDTO)
+        assertEquals(actual.data as User, expected)
     }
 }

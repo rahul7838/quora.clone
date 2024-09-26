@@ -13,13 +13,10 @@ import org.springframework.stereotype.Service
 @Service
 class RegisterUserService(val userRepository: UserRepository) : UserDetailsService {
 
-//    @Autowired
-//    private lateinit var userRepository: UserRepository
-
     fun registerUser(@NotNull userDTO: UserDTO): ApiResponse {
         val user = with(userDTO) {
             User(
-                name = this.name,
+                name = name,
                 surname = surname,
                 email = email,
                 mobile = mobile,
@@ -32,14 +29,8 @@ class RegisterUserService(val userRepository: UserRepository) : UserDetailsServi
         }
     }
 
-    fun isUserPresent(login: Login): Boolean {
-        return userRepository.findByEmailAndPassword(login.email, login.password)?.run { true } ?: false
-    }
-
     override fun loadUserByUsername(username: String?): UserDetails {
         val user = username?.let { userRepository.findByEmail(username) }
-
         return org.springframework.security.core.userdetails.User(username, user?.password, listOf())
     }
-
 }
