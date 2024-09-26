@@ -6,10 +6,12 @@ import com.rahul.quora.clone.dto.ApiResponse
 import com.rahul.quora.clone.dto.UserDTO
 import com.rahul.quora.clone.repository.UserRepository
 import org.jetbrains.annotations.NotNull
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
 
 @Service
-class RegisterUserService(val userRepository: UserRepository) {
+class RegisterUserService(val userRepository: UserRepository) : UserDetailsService {
 
 //    @Autowired
 //    private lateinit var userRepository: UserRepository
@@ -32,6 +34,12 @@ class RegisterUserService(val userRepository: UserRepository) {
 
     fun isUserPresent(login: Login): Boolean {
         return userRepository.findByEmailAndPassword(login.email, login.password)?.run { true } ?: false
+    }
+
+    override fun loadUserByUsername(username: String?): UserDetails {
+        val user = username?.let { userRepository.findByEmail(username) }
+
+        return org.springframework.security.core.userdetails.User(username, user?.password, listOf())
     }
 
 }

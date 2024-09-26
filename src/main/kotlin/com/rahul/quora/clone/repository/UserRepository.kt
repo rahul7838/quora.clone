@@ -9,4 +9,5 @@ interface UserRepository : CrudRepository<User, Int> {
 
     fun findByEmailAndPassword(email: String, password: String): User?
 
+    fun findByEmail(email: String): User?
 }

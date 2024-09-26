@@ -36,7 +36,7 @@ class UserSignUpControllerTest {
         val expected = user.copy(id = 1)
         val objectMapper = ObjectMapper().writer()
         val expectedJsonObject = objectMapper.writeValueAsString(expected)
-        `when`(registerUserService.registerUser(user)).thenReturn(expected)
+//        `when`(registerUserService.registerUser(user)).thenReturn(expected)
         mockMvc.perform(
             MockMvcRequestBuilders
                 .post("/signup")
