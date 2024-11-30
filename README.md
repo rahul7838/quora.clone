@@ -38,9 +38,9 @@ Apis
 1. Database migration
 2. Defining relations
 3. Flyway vs Liquibase
-4. RabbitMQ
 
-#Future learning
+
+#Future 
 1. Experience with at least one of the following messaging queue frameworks: Kafka, RabbitMQ, or ActiveMQ
 2. Knowledge of OAuth2 SSO
 3. Executor framework
