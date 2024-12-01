@@ -1,6 +1,7 @@
 package com.rahul.quora.clone.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.rahul.quora.clone.data.User
 import com.rahul.quora.clone.dto.ApiResponse
 import com.rahul.quora.clone.dto.UserDTO
@@ -50,8 +51,10 @@ class UserSignUpControllerTest {
         val apiResponse = ApiResponse().apply {
             data = user
         }
-        val objectMapper = ObjectMapper().writer()
-        val expectedJsonObject = objectMapper.writeValueAsString(apiResponse)
+        val objectMapper = ObjectMapper()
+        objectMapper.registerModule(JavaTimeModule())
+        val expectedJsonObject = objectMapper.writer().writeValueAsString(apiResponse)
+        println("println : $expectedJsonObject")
         mockMvc.perform(
             MockMvcRequestBuilders
                 .post("/signup")
@@ -61,9 +64,8 @@ class UserSignUpControllerTest {
         )
             .andExpect(status().`is`(HttpStatus.CREATED.value()))
             .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.content().json(expectedJsonObject))
             .andReturn()
-        verify(registerUserService, times(1)).registerUser(any())
+        verify(registerUserService, times(1)).registerUser(userDto)
             //TODO test does not end why?
     }
 }

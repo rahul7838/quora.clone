@@ -1,19 +1,13 @@
 package com.rahul.quora.clone.security
 
-import org.springframework.aot.generate.ValueCodeGenerator.withDefaults
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.config.Customizer
-import org.springframework.security.config.Customizer.withDefaults
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.header.writers.XXssProtectionHeaderWriter
 
 @Configuration
@@ -27,6 +21,8 @@ class WebSecurity : DefaultWebSecurityExpressionHandler() {
                 it
                     .anyRequest()
                     .authenticated()
+            }.csrf{
+                it.disable()
             }
 //            .oauth2Login(Customizer.withDefaults())
             //Configure spring security header to include xss protection header & CSP header in response
