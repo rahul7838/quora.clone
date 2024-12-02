@@ -1,9 +1,6 @@
 package com.rahul.quora.clone.data
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 /*
  Always provide the default value to each field in the entity class
@@ -14,11 +11,12 @@ import jakarta.persistence.Table
 @Table(name = "registered_user")
 data class User(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long = 0,
     val name: String = "",
     val surname: String = "",
     val mobile: Long = 0,
+    @Column(unique = true)
     val email: String = "",
     val password: String = ""
 )

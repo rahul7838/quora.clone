@@ -11,8 +11,7 @@ class QuoraFlyway {
     fun getFlyway(): Flyway {
         val flyway = Flyway.configure()
         flyway
-            .dataSource("jdbc:mysql://localhost:3306/Quora", "root", "9926430125")
-            .validateMigrationNaming(true)
+            .dataSource("jdbc:mysql://db:3306/quora-db", "root", "root")
             .baselineOnMigrate(true)
             .baselineDescription("added_flyway")
         return flyway.load()

@@ -36,6 +36,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql
 	implementation("org.flywaydb:flyway-mysql")
 
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
+	testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2")
+
+
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 //	testImplementation("io.projectreactor:reactor-test")

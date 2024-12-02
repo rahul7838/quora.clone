@@ -3,11 +3,11 @@ package com.rahul.quora.clone.dto
 import java.time.LocalDateTime
 
 
-class ApiResponse {
-    var apiError: MutableList<ApiError> = mutableListOf()
-    var data: Any? = null
+data class ApiResponse(
+    var apiError: MutableList<ApiError> = mutableListOf(),
+    var data: Any? = null,
     var header: Header = Header()
-}
+)
 
 data class Header(
     val time: LocalDateTime = LocalDateTime.now()
