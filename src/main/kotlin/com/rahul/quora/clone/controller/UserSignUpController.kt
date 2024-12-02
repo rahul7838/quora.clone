@@ -37,7 +37,7 @@ class UserSignUpController {
 
     @GetMapping("/login")
     fun userLogin(): ResponseEntity<Boolean> {
-//        val isPresent = registerUserService.isUserPresent(login/)
+        //use basic auth in postman and username-email and password
         val isAuthenticated = SecurityContextHolder.getContext().authentication.isAuthenticated
         return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(isAuthenticated)
     }
