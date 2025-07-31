@@ -28,7 +28,7 @@ class WebSecurity : DefaultWebSecurityExpressionHandler() {
             }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers("/signup")
+                    .requestMatchers("/signup", "/actuator/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()

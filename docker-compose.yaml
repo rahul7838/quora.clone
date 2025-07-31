@@ -5,10 +5,13 @@ services:
       context: .
     ports:
       - "8080:8080"
+    volumes:
+      - ./logs:/logs
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/quora-db
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+      JAVA_OPTS: "-Xms3g -Xmx4g"
     depends_on:
       - db
 
@@ -20,3 +23,4 @@ services:
       MYSQL_DATABASE: quora-db
     ports:
       - "3306:3306"
+
