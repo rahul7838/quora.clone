@@ -1,4 +1,4 @@
-version: '1.0'
+version: '3.8'
 services:
   app:
     build:
@@ -8,13 +8,19 @@ services:
     volumes:
       - ./logs:/logs
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/quora-db
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      JAVA_OPTS: "-Xms3g -Xmx4g"
+      # Use environment variables for flexible configuration
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:mysql://db:3306/quora-db}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME:-root}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-root}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-local}
+      JAVA_OPTS: "${JAVA_OPTS:--Xms1g -Xmx2g}"
     depends_on:
       - db
+    # Only start db dependency when running locally
+    profiles:
+      - local
 
+  # Local MySQL database (only runs with 'local' profile)
   db:
     image: mysql:8
     container_name: mysql
@@ -23,4 +29,28 @@ services:
       MYSQL_DATABASE: quora-db
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    profiles:
+      - local
+
+  # AWS/Production configuration (app only, no local db)
+  app-aws:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/logs
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_PROFILES_ACTIVE: aws
+      JAVA_OPTS: "-Xms512m -Xmx1g"
+    profiles:
+      - aws
+
+volumes:
+  mysql_data:
 
